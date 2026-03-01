@@ -1,0 +1,66 @@
+{
+  "name": "ipod-classic-player",
+  "version": "2.0.0",
+  "description": "Reproductor iPod Classic para PC con Discord Rich Presence",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "Erik",
+  "license": "MIT",
+  "dependencies": {
+    "@electron/get": "^3.1.0",
+    "chokidar": "^4.0.3",
+    "discord-rpc": "^4.0.1",
+    "electron": "^28.3.3",
+    "electron-store": "^8.0.0",
+    "howler": "^2.2.4",
+    "music-metadata": "^11.0.0",
+    "node-addon-api": "^8.3.1"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.erik.ipodclassic",
+    "productName": "oPud Classic Player",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.ico",
+      "publisherName": "Erik",
+      "certificateFile": "",
+      "verifyUpdateCodeSignature": false,
+      "signingHashAlgorithms": ["sha256"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "oPud Classic Player",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "license": ""
+    },
+    "portable": {
+      "artifactName": "oPud-Classic-Portable.exe",
+      "requestExecutionLevel": "user"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "node_modules/**/*"
+    ]
+  }
+}
